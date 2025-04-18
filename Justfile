@@ -1,6 +1,19 @@
 test: pytest
 lint: ruff mypy
 fmt: ruff-fmt
+pre-publish: fmt lint test build
+
+run args:
+    uv run crestic {{args}}
+
+debug args:
+    - env CRESTIC_DRYRUN=1 uv run crestic {{args}}
+
+build:
+    uv build
+
+publish:
+    uv publish
 
 pytest:
     uv run pytest
