@@ -7,8 +7,6 @@ import re
 import sys
 import glob
 import argparse
-import warnings
-import subprocess
 import configparser
 
 from typing import Optional, Dict, List
@@ -173,9 +171,7 @@ def main(
         except KeyError:
             pass
 
-    restic_options_split = {
-        k: splitlines(v) for k, v in restic_options.items()
-    }
+    restic_options_split = {k: splitlines(v) for k, v in restic_options.items()}
 
     command = python_args.command
 
