@@ -268,9 +268,7 @@ def test_expanded_tilde(conffile, environ):
 
 
 def test_expanded_variable(conffile, environ):
-    crestic.main(
-        ["plain", "backup", "$HOME"], conffile=conffile, environ=environ
-    )
+    crestic.main(["plain", "backup", "$HOME"], conffile=conffile, environ=environ)
 
     os.execvpe.assert_called_once_with(
         "restic",
@@ -319,9 +317,7 @@ def test_intermixed_error(conffile, environ, mock_parse_intermixed_args):
 
 
 def test_overloaded_config(conffile, environ):
-    crestic.main(
-        ["overloaded_config", "backup"], conffile=conffile, environ=environ
-    )
+    crestic.main(["overloaded_config", "backup"], conffile=conffile, environ=environ)
 
     os.execvpe.assert_called_once_with(
         "restic",
@@ -395,9 +391,7 @@ def test_command_config(conffile, environ):
 
 
 def test_interpolated_config(conffile, environ):
-    crestic.main(
-        ["interpolated", "backup"], conffile=conffile, environ=environ
-    )
+    crestic.main(["interpolated", "backup"], conffile=conffile, environ=environ)
 
     os.execvpe.assert_called_once_with(
         "restic",
@@ -415,9 +409,7 @@ def test_interpolated_config(conffile, environ):
 
 
 def test_interpolation_envvar(conffile, environ):
-    crestic.main(
-        ["interpolation-envvar", "backup"], conffile=conffile, environ=environ
-    )
+    crestic.main(["interpolation-envvar", "backup"], conffile=conffile, environ=environ)
 
     os.execvpe.assert_called_once_with(
         "restic",

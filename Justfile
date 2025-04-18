@@ -1,9 +1,15 @@
-test:
+test: pytest
+lint: ruff mypy
+fmt: ruff-fmt
+
+pytest:
     uv run pytest
 
-fmt:
+ruff-fmt:
     uvx ruff format
 
-lint:
+ruff:
     uvx ruff check
-    uvx mypy .
+
+mypy:
+    uv run mypy .
