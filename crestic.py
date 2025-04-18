@@ -228,6 +228,8 @@ def main(
             "             Warning:",
             "Executing in debug mode. restic will not run, backups are not touched!",
         )
+        print("  Crestic executable:", sys.argv[0])
+        print("   Python executable:", sys.executable)
         print("        Config files:", ", ".join(conffile))
         print("   Config files used:", ", ".join(conffile_read))
         print("     Config sections:", ", ".join(sections))
