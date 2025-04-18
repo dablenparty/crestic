@@ -27,7 +27,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            apk add just
+            sudo apt-get update -y just
             uv sync --locked
       - run:
           name: run tests
