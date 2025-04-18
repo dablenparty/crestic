@@ -304,6 +304,7 @@ def test_intermixed(conffile, environ, mock_parse_intermixed_args):
     )
 
 
+@pytest.mark.skipif(sys.version_info >= (3, 7), reason="requires python3.6 or lower")
 def test_intermixed_error(conffile, environ, mock_parse_intermixed_args):
     if not mock_parse_intermixed_args:
         pytest.skip()
