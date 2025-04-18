@@ -9,12 +9,18 @@ Plain Python 3.6+ on a UNIX system. Nothing else.
 
 Python 3.7+ is required for certain arguments.
 
-## UV (recommended)
+## UV Tool (recommended)
 
 You can simply run crestic using
 
 ```shell
 uvx crestic
+```
+
+## PIPX
+
+```shell
+pipx run crestic
 ```
 
 ## PIP
