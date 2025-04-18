@@ -36,15 +36,6 @@ requires-python = ">=3.6"
 Homepage = "https://github.com/nils-werner/crestic/"
 CI = "https://app.circleci.com/pipelines/github/nils-werner/crestic"
 
-[project.optional-dependencies]
-tests = [
-    "pytest",
-    "pytest-cov",
-    "pytest-mock",
-    "pytest-mypy",
-    "pytest-pycodestyle",
-]
-
 [project.scripts]
 crestic = "crestic:cli"
 
@@ -53,7 +44,11 @@ py-modules = ["crestic"]
 include-package-data = false
 
 [tool.pytest.ini_options]
-addopts = "--doctest-modules --cov-report term-missing --cov crestic --pycodestyle --mypy -Werror"
+addopts = "--doctest-modules --cov-report term-missing --cov crestic -Werror"
 
-[tool.pycodestyle]
-max-line-length = "127"
+[dependency-groups]
+dev = [
+    "pytest>=7.0.1",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.6.1",
+]
