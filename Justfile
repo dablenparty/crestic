@@ -3,10 +3,10 @@ lint: ruff mypy
 fmt: ruff-fmt
 pre-publish: clean sync fmt lint test build
 
-run args:
+run +args:
     uv run crestic {{args}}
 
-debug args:
+debug +args:
     - env CRESTIC_DRYRUN=1 uv run crestic {{args}}
 
 clean:
