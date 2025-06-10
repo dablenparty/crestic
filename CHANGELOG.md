@@ -2,6 +2,8 @@
 
 ### Next Release
 
+### `1.1.0`
+
  - Renewed tooling, using `uv`, `ruff`, `mypy` etc.
  - Added type annotations
 
