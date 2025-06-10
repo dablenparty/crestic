@@ -15,8 +15,7 @@
 1. Release on pypi
 
    ```
-   rm dist/*
-   just build publish
+   just clean build publish
    ```
 
 1. Release on AUR
