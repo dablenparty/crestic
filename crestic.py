@@ -8,7 +8,34 @@ import glob
 import os
 import re
 import sys
-from typing import Dict, List, Optional
+from typing import Dict, List, Mapping, MutableMapping, Optional
+
+
+class ExtendedInterpolationWithEnvVarFallback(configparser.ExtendedInterpolation):
+    """
+    Interpolation which expands environment variables in values.
+
+    Modified from: https://www.reddit.com/r/learnpython/comments/b00al0/comment/eibdaxy/
+    """
+
+    def before_get(
+        self,
+        parser: MutableMapping[str, Mapping[str, str]],
+        section: str,
+        option: str,
+        value: str,
+        defaults: Mapping[str, str],
+    ) -> str:
+        # try to interpolate the value from the file using the built-in
+        # (i.e. super) method; if that fails, try resolving as an envvar.
+        try:
+            gotten = super().before_get(parser, section, option, value, defaults)
+            if gotten is None:
+                raise ValueError(f"failed to interpolate '{value}' for unknown reason")
+        except configparser.InterpolationMissingOptionError:
+            return os.path.expandvars(value)
+        else:
+            return gotten
 
 
 def config_files(environ: Optional[Dict[str, str]] = None) -> List[str]:
@@ -124,7 +151,7 @@ def main(
 
     config = configparser.ConfigParser(
         allow_no_value=True,
-        interpolation=configparser.ExtendedInterpolation(),
+        interpolation=ExtendedInterpolationWithEnvVarFallback(),
     )
     # dont map config keys to lower case
     config.optionxform = str  # type: ignore
